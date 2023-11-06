@@ -2,26 +2,142 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer components {
+  .header__title {
+    @apply font-bold text-3xl text-center pt-10;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 #1e40af;
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 0, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+  }
+}
+
+/* Animação de crescimento */
+@keyframes grow {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* Animação de encolhimento */
+@keyframes shrink {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0);
+  }
+}
+
+/* .elemento {
+  animation-fill-mode: both;
+}
+
+.elemento.show {
+  animation: grow 0.5s ease;
+}
+
+.elemento.hide {
+  animation: shrink 0.5s ease;
+} */
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+.sign_in-form {
+  position: absolute;
+  right: -485px;
+  /* right: -1440px; */
+  transition: right 0.3s ease;
+}
+
+.sign_in-form:hover {
+  right: -480px;
+  cursor: pointer;
+}
+.sign_in-form .opener,
+.opener_login {
+  transition: opacity 0.4s ease;
+}
+.sign_in-form:hover .opener {
+  opacity: 0;
+}
+
+.sign_in-form.sign_in-form-show {
+  right: -3px;
+}
+.sign_in-form.sign_in-form-show .opener {
+  opacity: 0;
+}
+.auth_form {
+  transition: height 0.3s;
+  overflow: hidden;
+  height: 430px;
+}
+
+.auth_form-show {
+  height: 528px;
+  transition: height 0.3s;
+}
+.sign_in-form_close-button {
+  /* transform: scale(0);
+  transition: transform 0.5s ease;
+  transition-delay: 1s; */
+  animation: shrink 0.5s ease;
+}
+
+.sign_in-form.sign_in-form-show .sign_in-form_close-button {
+  /* transform: scale(1); */
+  animation: grow 0.5s ease;
+}
+
+.login_form:hover .opener_login {
+  /* opacity: 0; */
+}
+
+.login_form:hover + .sign_in-form-show {
+  right: -10px;
+}
+
+.bars {
+  width: 3px;
+  height: 40px;
+  @apply rounded-full;
+}
+
+main.login_page {
+  /* background-image: radial-gradient(
+    circle,
+    #f97316,
+    #f03d51,
+    #c72579,
+    #83338f,
+    #1e3a8a
+  ); */
+
+  background-image: linear-gradient(
+    to bottom,
+    #f97316,
+    #f03d51,
+    #c72579,
+    #83338f,
+    #1e3a8a
+  );
+}
+
+main.login_page input {
+  background-color: #e8e6e360;
+  @apply rounded-md outline-none;
 }
